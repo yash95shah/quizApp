@@ -1,1 +1,1 @@
-from google.cloud import storage, datastore
+from flask import render_template
