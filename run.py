@@ -1,1 +1,2 @@
-from flask import render_template
+from web-app import app
+app.run(debug=True, port=5000)
