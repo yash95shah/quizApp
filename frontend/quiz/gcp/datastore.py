@@ -10,7 +10,7 @@ datastore_client = datastore.Client(project_id)
 def save_question(question):
     key = datastore_client.key('Question')
     q_entity = datastore.Entity(key=key)
-    for q_prop, q_val in question.iteritems():
+    for q_prop, q_val in question.items():
         q_entity[q_prop] = q_val
     datastore_client.put(q_entity)
     
@@ -26,5 +26,6 @@ def list_entities(quiz='gcp', redact=True):
     return results
 
 
-q = ["What is going on?","How are you doing this?"]
-save_question(q)
+q = {"Question1":"What is going on?","Question2":"How are you doing this?",}
+#save_question(q)
+print (list_entities(redact=False))
