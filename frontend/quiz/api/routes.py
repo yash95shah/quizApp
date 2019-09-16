@@ -1,10 +1,12 @@
 
 
-import api
+
 
 from flask import request, Blueprint
 
 api_blueprint = Blueprint('api', __name__)
+
+from quiz.api import api
 
 """
 API endpoint for quiz
