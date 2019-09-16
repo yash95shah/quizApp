@@ -1,11 +1,15 @@
+#!/bin/bash
+
+
+
 echo "Creating Datastore/App Engine instance"
 gcloud app create --region "us-central"
 
 echo "Creating bucket: gs://$DEVSHELL_PROJECT_ID-media"
 gsutil mb gs://$DEVSHELL_PROJECT_ID-media
 
-echo "Exporting GCLOUD_PROJECT and GCLOUD_BUCKET"
-export GCLOUD_PROJECT=$DEVSHELL_PROJECT_ID
+echo "Exporting concrete-envoy-213218 and GCLOUD_BUCKET"
+export concrete-envoy-213218=$DEVSHELL_PROJECT_ID
 export GCLOUD_BUCKET=$DEVSHELL_PROJECT_ID-media
 
 echo "Creating virtual environment"
@@ -45,9 +49,10 @@ gcloud container builds submit -t gcr.io/$DEVSHELL_PROJECT_ID/quiz-frontend ./fr
 gcloud container builds submit -t gcr.io/$DEVSHELL_PROJECT_ID/quiz-backend ./backend/
 
 echo "Deploying to Container Engine"
-sed -i -e "s/\[GCLOUD_PROJECT\]/$DEVSHELL_PROJECT_ID/g" ./frontend-deployment.yaml
-sed -i -e "s/\[GCLOUD_PROJECT\]/$DEVSHELL_PROJECT_ID/g" ./backend-deployment.yaml
+sed -i -e "s/\[concrete-envoy-213218\]/$DEVSHELL_PROJECT_ID/g" ./frontend-deployment.yaml
+sed -i -e "s/\[concrete-envoy-213218\]/$DEVSHELL_PROJECT_ID/g" ./backend-deployment.yaml
 kubectl create -f ./frontend-deployment.yaml
 kubectl create -f ./backend-deployment.yaml
 kubectl create -f ./frontend-service.yaml
+
 echo "Project ID: $DEVSHELL_PROJECT_ID"

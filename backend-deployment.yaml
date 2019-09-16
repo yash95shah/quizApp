@@ -1,3 +1,4 @@
+
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
@@ -14,10 +15,10 @@ spec:
     spec:
       containers:
       - name: quiz-backend
-        image: gcr.io/[GCLOUD_PROJECT]/quiz-backend
+        image: gcr.io/[concrete-envoy-213218]/quiz-backend
         imagePullPolicy: Always
         env:
-          - name: GCLOUD_PROJECT
-            value: [GCLOUD_PROJECT]
+          - name: concrete-envoy-213218
+            value: [concrete-envoy-213218]
           - name: GCLOUD_BUCKET
-            value: [GCLOUD_PROJECT]-media
+            value: [concrete-envoy-213218]-media
